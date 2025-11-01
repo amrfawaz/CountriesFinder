@@ -27,6 +27,7 @@
 		864D17232EB5E03400C4F053 /* CountriesFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountriesFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		864D17312EB5E03600C4F053 /* CountriesFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountriesFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		864D173B2EB5E03600C4F053 /* CountriesFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountriesFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		864D179A2EB5E0C700C4F053 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +76,7 @@
 		864D171A2EB5E03400C4F053 = {
 			isa = PBXGroup;
 			children = (
+				864D179A2EB5E0C700C4F053 /* Packages */,
 				864D17252EB5E03400C4F053 /* CountriesFinder */,
 				864D17342EB5E03600C4F053 /* CountriesFinderTests */,
 				864D173E2EB5E03600C4F053 /* CountriesFinderUITests */,
