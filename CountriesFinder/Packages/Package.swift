@@ -66,5 +66,10 @@ let package = Package(
             dependencies: [],
             path: "SharedModels/Sources"
         ),
+        .testTarget(
+            name: "CountryDetailsTests",
+            dependencies: ["CountryDetails"],
+            path: "CountryDetails/Tests"
+        ),
     ]
 )
