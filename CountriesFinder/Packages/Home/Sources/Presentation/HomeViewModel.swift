@@ -58,19 +58,9 @@ public final class HomeViewModelImpl: HomeViewModel {
 
             countriesApiErrors = nil
             countries = response
-//            coordinator.push(
-//                .otp(
-//                    mobile: userPhoneNumber,
-//                    countryPrefix: prefix,
-//                    verificationType: .forgetPassword,
-//                    token: token
-//                )
-//            )
 
         } catch {
             countriesApiErrors = GenericAPIError.genericError(description: error.localizedDescription)
         }
     }
-    
-
 }

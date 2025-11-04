@@ -11,10 +11,6 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "Packages",
-            targets: ["Packages"]),
-        
-        .library(
             name: "CoreInterface",
             targets: ["CoreInterface"]),
         .library(
@@ -69,10 +65,6 @@ let package = Package(
             name: "SharedModels",
             dependencies: [],
             path: "SharedModels/Sources"
-        ),
-        .testTarget(
-            name: "PackagesTests",
-            dependencies: ["Packages"]
         ),
     ]
 )
