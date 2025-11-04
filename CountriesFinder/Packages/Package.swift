@@ -13,6 +13,10 @@ let package = Package(
         .library(
             name: "Packages",
             targets: ["Packages"]),
+        
+        .library(
+            name: "CoreInterface",
+            targets: ["CoreInterface"]),
         .library(
             name: "NetworkManager",
             targets: ["NetworkManager"]),
@@ -23,7 +27,7 @@ let package = Package(
         .library(
             name: "SharedModels",
             targets: ["SharedModels"]),
-            
+        
         
     ],
     targets: [
@@ -32,6 +36,10 @@ let package = Package(
         .target(
             name: "Packages"),
 
+        .target(
+            name: "CoreInterface",
+            path: "CoreInterface/Sources"
+        ),
         .target(
             name: "NetworkManager",
             path: "NetworkManager/Sources"
