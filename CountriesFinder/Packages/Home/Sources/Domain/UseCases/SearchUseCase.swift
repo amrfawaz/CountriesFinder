@@ -31,3 +31,24 @@ final public class SearchUseCaseUseCaseImpl: SearchUseCase {
         }
     }
 }
+
+final class MockSearchUseCase: SearchUseCase, @unchecked Sendable {
+    var searchResult: Result<[Country], Error> = .success([])
+    var searchCallCount = 0
+    var delay: TimeInterval = 0
+    
+    func search() async throws -> [Country] {
+        searchCallCount += 1
+        
+        if delay > 0 {
+            try? await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))
+        }
+        
+        switch searchResult {
+        case .success(let countries):
+            return countries
+        case .failure(let error):
+            throw error
+        }
+    }
+}
