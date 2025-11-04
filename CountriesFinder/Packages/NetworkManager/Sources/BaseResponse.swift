@@ -7,17 +7,18 @@
 
 import Foundation
 
-public struct BaseResponse<T: Decodable, E: Decodable>: Decodable {
+public struct BaseResponse<T: Decodable>: Decodable {
     public var data: T?
-    public var error: E?
-}
-
-public struct GDError: Decodable, Sendable {
-    public init(code: Int, message: String) {
-        self.code = code
-        self.message = message
+    
+    public init(from decoder: Decoder) throws {
+        if let container = try? decoder.container(keyedBy: CodingKeys.self) {
+            data = try container.decodeIfPresent(T.self, forKey: .data)
+        } else {
+            data = try? T(from: decoder)
+        }
     }
 
-    public let code: Int
-    public let message: String
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
 }

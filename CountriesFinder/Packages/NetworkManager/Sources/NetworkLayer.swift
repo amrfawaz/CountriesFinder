@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol NetworkLayer: Sendable {
-    func execute<T: Decodable, E: Decodable>(_ api: API) async throws -> BaseResponse<T, E>
+    func execute<T: Decodable>(_ api: API) async throws -> BaseResponse<T>
 }
 
 public enum Constants {
@@ -34,9 +34,9 @@ public final class NetworkLayerImpl: NetworkLayer {
         self.networkManager = networkManager
     }
     
-    public func execute<T: Decodable, E: Decodable>(_ api: API) async throws -> BaseResponse<T, E> {
+    public func execute<T: Decodable>(_ api: API) async throws -> BaseResponse<T> {
         do {
-            let response: BaseResponse<T, E> = try await networkManager.executeAPI(api)
+            let response: BaseResponse<T> = try await networkManager.executeAPI(api)
             return response
         } catch {
             throw error
