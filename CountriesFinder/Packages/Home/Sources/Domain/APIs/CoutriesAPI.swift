@@ -36,6 +36,6 @@ public enum ResetPasswordAPI: API, Sendable {
     }
     
     public var parameters: (any Encodable)? {
-        ["fields": "name,capital,currencies"]
+        ["fields": "name,capital,currencies,flags"]
     }
 }

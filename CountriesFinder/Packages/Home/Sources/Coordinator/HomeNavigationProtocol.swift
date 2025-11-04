@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SharedModels
 
 @MainActor
 public protocol HomeNavigationProtocol {
-    func showCountryDetail(_ countryId: Int)
+    func showCountryDetail(_ country: Country)
 }

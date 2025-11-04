@@ -7,17 +7,18 @@
 
 import Foundation
 import NetworkManager
+import SharedModels
 
 struct CountryDTO: Decodable {
     let name: CountryNameDTO?
     let capital: [String]?
-    let currencies: [String: [String: String]]?
+    let currencies: [String: CurrencyDTO]?
     let flags: CountryFlagDTO?
 
     init(
         name: CountryNameDTO?,
         capital: [String]?,
-        currencies: [String : [String : String]]?,
+        currencies: [String: CurrencyDTO]?,
         flags: CountryFlagDTO
     ) {
         self.name = name
@@ -32,13 +33,24 @@ extension CountryDTO {
         return Country(
             name: self.name?.toDomain(),
             capital: self.capital,
-//            currencies: self.currencies,
+            currency: self.currencies?.values.first?.toDomain(),
             flags: self.flags?.toDomain()
         )
     }
 }
 
 
+struct CurrencyDTO: Decodable {
+    var name: String?
+    var symbol: String?
+
+    func toDomain() -> Currency {
+        Currency(
+            name: self.name ?? "",
+            symbol: self.symbol ?? ""
+        )
+    }
+}
 
 
 struct CountryNameDTO: Decodable {
@@ -54,8 +66,8 @@ struct CountryNameDTO: Decodable {
 extension CountryNameDTO {
     func toDomain() -> CountryName {
         return CountryName(
-            name: self.name,
-            officialName: self.officialName
+            name: self.name ?? "",
+            officialName: self.officialName ?? ""
         )
     }
 }
@@ -64,6 +76,6 @@ struct CountryFlagDTO: Decodable {
     let png: String?
 
     func toDomain() -> CountryFlag {
-        return CountryFlag(png: self.png)
+        return CountryFlag(png: self.png ?? "")
     }
 }

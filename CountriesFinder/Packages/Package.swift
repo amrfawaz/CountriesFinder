@@ -25,6 +25,10 @@ let package = Package(
             targets: ["Home"]
         ),
         .library(
+            name: "CountryDetails",
+            targets: ["CountryDetails"]
+        ),
+        .library(
             name: "SharedModels",
             targets: ["SharedModels"]),
         
@@ -48,9 +52,18 @@ let package = Package(
             name: "Home",
             dependencies: [
                 "NetworkManager",
-                "SharedModels"
+                "SharedModels",
+                "CountryDetails"
             ],
             path: "Home/Sources"
+        ),
+        .target(
+            name: "CountryDetails",
+            dependencies: [
+                "SharedModels",
+                "CoreInterface"
+            ],
+            path: "CountryDetails/Sources"
         ),
         .target(
             name: "SharedModels",

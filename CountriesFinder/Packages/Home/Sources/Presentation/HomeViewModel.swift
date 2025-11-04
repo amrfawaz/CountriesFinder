@@ -7,6 +7,7 @@
 
 import Foundation
 import SharedModels
+import Combine
 
 @MainActor
 public protocol HomeViewModel: ObservableObject {
@@ -16,10 +17,8 @@ public protocol HomeViewModel: ObservableObject {
     var countriesApiErrors: GenericAPIError? { get set }
     var filteredCountries: [Country] { get }
     var searchText: String { get set }
-
+    
     func fetchCountries() async
-
-//    func handle(_ action: ConfirmIdentityView<ConfirmIdentityViewModelImp>.Action) async
 }
 
 

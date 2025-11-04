@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SharedModels
-//import HeroDetails
+import CountryDetails
 
 @MainActor
 public final class HomeCoordinator: Coordinator, HomeNavigationProtocol {
@@ -32,20 +32,21 @@ public final class HomeCoordinator: Coordinator, HomeNavigationProtocol {
 extension HomeCoordinator {
     public enum HomePage: Hashable, Identifiable {
         case homeView
-//        case countryDetail(heroId: Int)
+        case countryDetail(country: Country)
         
         public var id: String {
             switch self {
             case .homeView: return "homeView"
-//            case .countryDetail(let countryId): return "countryDetail\(countryId)"
+            case .countryDetail(let country): return "countryDetail\(country.id)"
             }
         }
     }
 }
 
-// MARK: - HeroesNavigationProtocol Implementation
+// MARK: - HomeNavigationProtocol Implementation
 extension HomeCoordinator {
-    public func showCountryDetail(_ countryId: Int) {
+    public func showCountryDetail(_ country: Country) {
+        navigate(to: .countryDetail(country: country))
     }
 }
 
@@ -57,13 +58,13 @@ extension HomeCoordinator {
             return AnyView(
                 HomeView(viewModel: homeViewModel, navigator: self)
             )
-//            
-//        case .heroDetail(let heroId):
-//            return AnyView(
-//                HeroDetailsView(
-//                    viewModel: dependencies.makeHeroDetailsViewModel(heroId: heroId)
-//                )
-//            )
+            
+        case .countryDetail(let country):
+            return AnyView(
+                CountryDetailsView(
+                    viewModel: dependencies.makeCountryDetailsViewModel(country: country)
+                )
+            )
         }
     }
 }

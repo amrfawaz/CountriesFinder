@@ -8,33 +8,23 @@
 import Foundation
 import SharedModels
 import NetworkManager
-//import HeroDetails
+import CountryDetails
 
 @MainActor
 public final class DependencyContainer {
     // Home dependencies
-//    public let heroesRepository: HeroesRepositoryImpl
     public let searchUseCase: SearchUseCaseUseCaseImpl
-
-    // Hero Details dependencies
-//    public let heroDetailsRepository: HeroDetailsRepositoryImpl
-//    public let heroDetailsUseCase: HeroDetailsUseCase
 
     public init() {
         // Initialize Home dependencies
         self.searchUseCase = SearchUseCaseUseCaseImpl(networkLayer: NetworkLayerImpl(networkManager: NetworkManagerImp.sharedInstance()))
-//        self.heroesUseCase = HeroesUseCase(repository: heroesRepository)
-        
-        // Initialize Hero Details dependencies
-//        self.heroDetailsRepository = HeroDetailsRepositoryImpl(api: HeroDetailsAPI())
-//        self.heroDetailsUseCase = HeroDetailsUseCase(repository: heroDetailsRepository)
     }
 
     public func makeHomeViewModel() -> HomeViewModelImpl {
         HomeViewModelImpl(useCase: searchUseCase)
     }
 
-//    public func makeHeroDetailsViewModel(heroId: Int) -> HeroDetailsViewModel {
-//        HeroDetailsViewModel(heroId: heroId, heroDetailsUseCase: heroDetailsUseCase)
-//    }
+    public func makeCountryDetailsViewModel(country: Country) -> CountryDetailsViewModelImpl {
+        CountryDetailsViewModelImpl(country: country)
+    }
 }

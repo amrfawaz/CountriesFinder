@@ -7,6 +7,7 @@
 
 import Foundation
 import NetworkManager
+import SharedModels
 
 public protocol SearchUseCase: Sendable {
     func search() async throws -> [Country]

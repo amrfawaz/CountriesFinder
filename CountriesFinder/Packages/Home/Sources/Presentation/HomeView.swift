@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SharedModels
 
 struct HomeView<ViewModel: HomeViewModel>: View {
     @ObservedObject private var viewModel: ViewModel
@@ -23,9 +24,24 @@ struct HomeView<ViewModel: HomeViewModel>: View {
 
     var body: some View {
         NavigationStack {
+            
             List(viewModel.filteredCountries) { item in
-                Text(item.name?.name ?? "")
+                HStack {
+                    if let flag = item.flags?.png {
+                        LoadedImage(flag)
+                            .frame(width: 30, height: 30)
+
+                    }
+                    
+                    Text(item.name?.name ?? "")
+                    Spacer()
+                }
+                .onTapGesture {
+                    navigator.showCountryDetail(item)
+                }
+
             }
+            .listStyle(.insetGrouped)
             .navigationTitle("Countries")
             .searchable(text: $viewModel.searchText, prompt: "Search Countries")
         }
